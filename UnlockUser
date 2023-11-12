@@ -1,0 +1,4 @@
+$usernameToUnlock = "Nom Utilisateur"
+
+Unlock-ADAccount -Identity $usernameToUnlock
+Write-Host "Compte de l'utilisateur $usernameToUnlock débloqué avec succès."
