@@ -1,0 +1,8 @@
+$userData = Import-Csv 'C:\Users\Administrator\Desktop\utilisateurs.csv'
+
+foreach ($user in $userData) {
+    $username = $user.'Nom Utilisateur'
+
+    Disable-ADAccount -Identity $username
+    Write-Host "Utilisateur $username désactivé avec succès."
+}
