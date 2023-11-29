@@ -1,0 +1,11 @@
+$userData = Import-Csv 'C:\Users\Administrator\Desktop\utilisateurs.csv'
+
+foreach ($user in $userData) {
+    $username = $user.'Nom Utilisateur'
+    $newFirstname = $user.'Nouveau Prénom'
+    $newLastname = $user.'Nouveau Nom'
+    $newEmail = $user.'Nouveau Email'
+
+    Set-ADUser -Identity $username -GivenName $newFirstname -Surname $newLastname -EmailAddress $newEmail
+    Write-Host "Informations mises à jour pour l'utilisateur $username."
+}
