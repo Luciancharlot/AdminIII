@@ -1,4 +1,12 @@
-$usernameToUnlock = "Nom Utilisateur"
+$userData = Import-Csv 'C:\Users\Administrator\Desktop\utilisateurs.csv'
 
-Unlock-ADAccount -Identity $usernameToUnlock
-Write-Host "Compte de l'utilisateur $usernameToUnlock débloqué avec succès."
+foreach ($user in $userData) {
+    $username = $user.'Nom Utilisateur'
+
+    if ((Get-ADUser $username -Properties LockedOut).LockedOut) {
+        Unlock-ADAccount -Identity $username
+        Write-Host "Le compte de $username a été débloqué."
+    } else {
+        Write-Host "Le compte de $username n'est pas verrouillé."
+    }
+}
