@@ -1,8 +1,8 @@
-$userData = Import-Csv 'C:\Users\Administrator\Desktop\utilisateurs.csv'
+$userData = Import-Csv 'C:\Users\Administrator\Desktop\supression.csv'
 
 foreach ($user in $userData) {
     $username = $user.'Nom Utilisateur'
-
-    Disable-ADAccount -Identity $username
-    Write-Host "Utilisateur $username désactivé avec succès."
+    $deleteuser - Get-ADUser -Filter {SamAccountName -eq $username}
+    Remove-ADUser -Identity $username -Confirm:$false
 }
+Write-Host "EndScript"
